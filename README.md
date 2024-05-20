@@ -21,4 +21,5 @@ $ sudo apt-get install iverilog
 $ sudo apt update
 $ sudo apt install gtkwave
 ```
+![image](https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c76a1b61-9cc6-48c2-bf90-521534261f92)
 ![image](https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3e3fcef3-7bd7-4871-aa75-d91b80c57d2a)
