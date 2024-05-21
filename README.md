@@ -1,5 +1,4 @@
-<img width="609" alt="Screenshot 2024-05-22 at 12 15 24 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e5469bac-b816-4f91-8aee-23f27ee3d300"><details>
-  <summary>Day 0: System Tools Setup</summary>
+<summary>Day 0: System Tools Setup</summary>
     <ul>
       <li>
         <details>
