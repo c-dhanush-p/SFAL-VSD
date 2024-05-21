@@ -1,3 +1,4 @@
+<details>
 <summary>Day 0: System Tools Setup</summary>
     <ul>
       <li>
@@ -179,6 +180,9 @@ $ sudo apt install gtkwave
             These give us the operating conditions of the cells in the library
           </pre>          
         </details>
+        </details>
+      </li>
+    <li>
         <details>
             <summary>PART 2: Understanding the cells in library</summary>
           <p>Step 1</p>
@@ -201,7 +205,6 @@ $ sudo apt install gtkwave
             -Input Pins (input capacitance, internal power, transition & delay)
             <img width="1091" alt="Screenshot 2024-05-21 at 10 54 24 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/70c1b5ef-6baa-4765-b465-3da0998f3f7c">
           </pre>
-        </details>
         </details>
         <details>
           <summary>Hierarchial vs Flat Synthesis</summary>
@@ -265,3 +268,7 @@ $ sudo apt install gtkwave
       </li>
     </ul>
   </details>
+   </li>
+    </ul>
+  </details>
+  
