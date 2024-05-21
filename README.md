@@ -80,6 +80,8 @@ $ sudo apt install gtkwave
       <li>
         <details>
           <summary>Lab using Yosys & Logic Synthesis</summary>
+          <details>
+            <summary>PART 1: Realising the Logic and Generating Library Specific Design</summary>
           <p>Step 1</p>
           <pre>
             Invoke Yosys by using command yosys
@@ -121,7 +123,32 @@ $ sudo apt install gtkwave
             <img width="608" alt="7" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5245e764-c2de-4830-a35d-daea38089c90">
           </pre>          
         </details>
+        <details>
+            <summary>PART 2: Write the netlist & Modify to View Without Additional Attributes</summary>
+          <p>Step 1</p>
+          <pre>
+            Write the netlist using command 'write_netlist'
+            <img width="404" alt="Screenshot 2024-05-21 at 9 22 06 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2bb73b22-1488-4cf5-9a74-910712431df5">
+          </pre>
+          <p>Step 2</p>
+          <pre>
+            View the netlist using command '!gvim'
+            <img width="432" alt="Screenshot 2024-05-21 at 9 23 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/36b0d303-b002-41e3-9a27-adcd7684dcf0">
+            Observe the netlist generated
+            <img width="432" alt="Screenshot 2024-05-21 at 9 23 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/45b75b0f-1b92-4097-925a-0ef502857d65">
+          </pre>
+          <p>Step 3</p>
+          <pre>
+            Generate a netlist without attributes using -noattr
+            <img width="954" alt="Screenshot 2024-05-21 at 9 57 20 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/47c08fe2-b816-4d71-adff-8a305ba8f132">
+          </pre>
+          <p>Step 4</p>
+          <pre>
+            Use '!gvim' again to view the modified netlist
+            <img width="432" alt="Screenshot 2024-05-21 at 9 23 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c9f300fb-99d2-4263-9d6d-6f30834072c3">
+            The Modified Netlist:
+            <img width="781" alt="Screenshot 2024-05-21 at 9 34 05 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ecc95ee1-9381-47fd-9b01-577e77fd55c0">
+          </pre>
       </li>
     </ul>
   </details>
-  
