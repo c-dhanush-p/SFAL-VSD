@@ -314,8 +314,10 @@ Generate the netlist
 Run show command
 <img width="1362" alt="Screenshot 2024-05-22 at 7 33 46 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f04ad95e-7c92-4b21-8f02-a4e3a7b2151d">
 <img width="1360" alt="Screenshot 2024-05-22 at 7 34 39 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7f953408-0771-48c1-b307-33c96a04fed1">
-Multiple Instances: Such module level synthesis is done when multiple instances of the same module are used in the top level design.
-Divide & Conquer: If you have a massive design, this type of synthesis can be done to generate multiple understandable netlists that can be stitched together.
+Multiple Instances: Such module level synthesis is done when multiple instances of the same module are 
+used in the top level design.
+Divide & Conquer: If you have a massive design, this type of synthesis can be done to generate 
+multiple understandable netlists that can be stitched together.
                             </pre>
                         </details>
                     </li>
