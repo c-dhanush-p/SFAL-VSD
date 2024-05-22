@@ -286,6 +286,39 @@ Run command 'show' to view the flattened module
                             </pre>
                         </details>
                     </li>
+                    <li>
+                        <details>
+                            <summary>PART 3: Sub-Module Level Synthesis</summary>
+                            <p>Step 1</p>
+                            <pre>
+Read library
+<img width="755" alt="Screenshot 2024-05-22 at 7 26 39 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f521083f-1d23-4e6a-87ef-45a96b043e23">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Read Verilog
+<img width="713" alt="Screenshot 2024-05-22 at 7 28 58 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f3bddcb1-5888-4288-9b9a-119535f53cbd">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Synthesize at sub module level using 'synth -top'
+<img width="310" alt="Screenshot 2024-05-22 at 7 31 10 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/232776a6-02a3-4097-9cd9-ec88e525d29f">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Generate the netlist
+<img width="615" alt="Screenshot 2024-05-22 at 7 32 50 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e54d33a7-9d88-4df7-a6f0-2d6f8e2a5a9f">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Run show command
+<img width="1362" alt="Screenshot 2024-05-22 at 7 33 46 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f04ad95e-7c92-4b21-8f02-a4e3a7b2151d">
+<img width="1360" alt="Screenshot 2024-05-22 at 7 34 39 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7f953408-0771-48c1-b307-33c96a04fed1">
+Multiple Instances: Such module level synthesis is done when multiple instances of the same module are used in the top level design.
+Divide & Conquer: If you have a massive design, this type of synthesis can be done to generate multiple understandable netlists that can be stitched together.
+                            </pre>
+                        </details>
+                    </li>
                 </ul>
             </details>
         </li>
