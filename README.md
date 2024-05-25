@@ -324,5 +324,194 @@ multiple understandable netlists that can be stitched together.
                 </ul>
             </details>
         </li>
+        <li>
+            <details>
+                <summary>Flop Coding Styles</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>PART 1: Different Flip Flops</summary>
+                            <p>Step 1</p>
+                            <pre>
+Run iverilog for an Asynchronous Reset D-Flip Flop using its testbench
+![Screenshot 2024-05-25 at 5 40 49 PM](https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/82b144e5-745a-49d8-9746-bd27aca1c82b)
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Execute the output file (a.out)
+<img width="827" alt="Screenshot 2024-05-25 at 5 40 57 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3065ff21-438d-44d6-9faa-05e510d9ec13">
+                            </pre>          
+                            <p>Step 3</p>
+                            <pre>
+Run GTKWave to view the behaviour of the Asynchronous Reset D-Flip Flop
+<img width="1020" alt="Screenshot 2024-05-25 at 5 42 49 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ffed249b-5274-463e-8c0e-5ffcc76b8833">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Observe the behaviour of the Asynchronous Reset D-Flip Flop
+<img width="1370" alt="Screenshot 2024-05-25 at 5 43 08 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f59e27b2-fbc6-4265-a9eb-030e3b6e8f22">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Repeat Steps 1-3 using the Asynchronous Set D-Flip Flop
+<img width="1198" alt="Screenshot 2024-05-25 at 5 50 56 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e5b3c737-6a0c-41b9-9943-551f4a65df7a">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Observe the behaviour of the Asynchronous Set D-Flip Flop
+<img width="1376" alt="Screenshot 2024-05-25 at 5 50 28 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cd91a7e2-1462-4417-becc-41a1ba3804ef">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Repeat Steps 1-3 using the Synchronous Reset D-Flip Flop
+<img width="1160" alt="Screenshot 2024-05-25 at 5 52 33 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e0176eba-30d7-4ec2-a455-f65c29ff1bf4">
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Observe the behaviour of the Synchronous Reset D-Flip Flop
+<img width="1374" alt="Screenshot 2024-05-25 at 5 53 54 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6d135130-4828-4ee0-b37a-f34cc56c8ce9">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>PART 2: Flop Synthesis</summary>
+                            <p>Step 1</p>
+                            <pre>
+In Yosys, read the library
+<img width="742" alt="Screenshot 2024-05-25 at 6 07 46 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f7d5a769-be16-4bb1-8b92-bfa3ac26ade0">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Read the verilog file for Asynchronous Reset for D-Flip Flop
+<img width="676" alt="Screenshot 2024-05-25 at 6 08 24 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d98c8b23-14d0-447c-8673-b8a8289fbfd1">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Define the module to be sunthesized
+<img width="328" alt="Screenshot 2024-05-25 at 6 09 26 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/28083be8-f27b-4be0-91c5-546b5e58155b">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Map  the flip flops in the library for synthesis
+<img width="887" alt="Screenshot 2024-05-25 at 6 10 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/137cc8c9-0908-4e76-af12-94c682009a93">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Generate the netlist
+<img width="898" alt="Screenshot 2024-05-25 at 6 11 43 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1b986c23-31dd-4d6d-aa74-4df281b2009c">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Execute show to view the netlist for the Asynchronous Reset D-Flip Flop
+<img width="1373" alt="Screenshot 2024-05-25 at 6 12 04 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f2ed91e7-5a74-4bc1-9345-20266e043938">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Repeat Steps 2-5 using for the Asynchronous Set D-Flip Flop
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Execute show to view the netlist design for the Ashynchronous Set D-Flip Flop
+<img width="1369" alt="Screenshot 2024-05-25 at 6 31 28 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/12fa0bd2-5b1d-4407-a983-2dc652d11c8a">
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Repeat Steps 2-5 using for the Synchronous Reset D-Flip Flop
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Execute show to view the netlist design for the Synchronous Reset D-Flip Flop
+<img width="1371" alt="Screenshot 2024-05-25 at 6 36 55 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8177cd93-1abe-4674-a81f-ceb7b86dc48e">
+                            </pre>
+                        </details>
+                    </li>    
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Special Case Optimizations</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>PART 1: mul2 Synthesis</summary>
+                            <p>Step 1</p>
+                            <pre>
+In Yosys, read the library
+<img width="725" alt="Screenshot 2024-05-25 at 7 01 08 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/a32d5539-b2a4-40bb-95c1-bac1b3332cd0">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Read the verilog file for mult_2
+<img width="625" alt="Screenshot 2024-05-25 at 7 01 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/be30de05-0579-4545-991e-e52d33d88751">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Define the module to be synthesized
+<img width="262" alt="Screenshot 2024-05-25 at 7 02 00 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/727bbedd-fe7d-4532-9a3c-2985192970b4">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Generate the netlist and notice the prompt to not call for abc as there are no cells to be synthesized
+<img width="814" alt="Screenshot 2024-05-25 at 7 02 23 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/a2ea3b99-0d86-4c5a-a151-2be5bdeed93b">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Execute show to view the netlist design
+<img width="1374" alt="Screenshot 2024-05-25 at 7 02 33 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/73b2dfce-944f-4809-bd10-e6f467c07f71">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Write the netlist
+<img width="416" alt="Screenshot 2024-05-25 at 7 20 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/76314161-76ae-4b65-9744-bc8a89549651">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+View the netlist
+<img width="370" alt="Screenshot 2024-05-25 at 7 30 02 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/bdb9adae-f924-4403-8aba-9d7580f264f9">
+<img width="794" alt="Screenshot 2024-05-25 at 7 30 17 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ac88fca2-8995-46a5-8360-81df681e06c5">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>PART 2: mult8 Synthesis</summary>
+                            <p>Step 1</p>
+                            <pre>
+Read the verilog file for mult_8
+<img width="626" alt="Screenshot 2024-05-25 at 7 32 14 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5847d9a9-9f18-45cc-8571-b7bb62e9f544">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Define the module to be sunthesized
+<img width="293" alt="Screenshot 2024-05-25 at 7 33 20 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c7ba86b6-f541-44e2-91ca-05cde1f011bf">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Generate the netlist and notice the prompt to not call for abc as there are no cells to be synthesized
+<img width="860" alt="Screenshot 2024-05-25 at 7 35 13 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2a4de562-57cf-4c46-820f-0babb6797425">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Execute show to view the netlist design
+<img width="608" alt="Screenshot 2024-05-25 at 7 35 49 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5f8764bf-8775-4d9a-a504-bb47971b04fa">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Write the netlist
+<img width="431" alt="Screenshot 2024-05-25 at 7 38 22 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/24820a31-19eb-497e-bcc2-c11ec0fb3c4c">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+View the netlist
+<img width="774" alt="Screenshot 2024-05-25 at 7 39 06 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9b5427d8-49c0-4b9c-ad29-3a17fc0baa41">
+<img width="779" alt="Screenshot 2024-05-25 at 7 39 21 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8c4e7a38-c5aa-4774-81b6-e4a9ea022214">
+                            </pre>
+                        </details>
+                    </li>    
+                </ul>
+            </details>
+        </li>
     </ul>
 </details>
