@@ -774,60 +774,81 @@ run command 'show' to view the design
 <details>
     <summary>Day 5: DFT</summary>
     <ul>
-            <summary>**What is DFT?**</summary>
+            <summary>_What is DFT?_</summary>
             <p>
 Design for Testability (DFT) is the methodology in VLSI that makes manufactured designs easier to test.
             </p>
-            <summary>**Why do we do DFT?**</summary>
+            <summary>_Why do we do DFT?_</summary>
             <p>
 Simply put, DFT helps to improve the testability of a complex chip. With chips becoming more complex with day and age, it becomes more essential to have effecient DFT that can test all the components because "whatever can go wrong, will go wrong." (Murphy's Law)
             </p>
-            <summary>DFT for economic and market needs</summary>
+            <summary>_DFT for economic and market needs_</summary>
             <p>
 -> DFT for Economic Needs:
-            As mentioned before, with chips becoming more complex day by day, testing them might becoming eeconomically challenging. Having an effecient DFT methodology can decrease these costs. Also, DFT helps in finding defects or faults early in the process of designing which helps in short time for getting the design to the market which is profittable for a company.
+.            
+                As mentioned before, with chips becoming more complex day by day, testing them might becoming eeconomically challenging. Having an effecient DFT methodology can decrease these costs. Also, DFT helps in finding defects or faults early in the process of designing which helps in short time for getting the design to the market which is profittable for a company.
 
 -> DFT for Market Needs:
+.            
             Having a faster time to market also helps in quick turnaround time which can satisfy the customer's needs while also ensuring defect-free and completely tested products. 
             </p>
-            <summary>When and where is DFT conducted?</summary>
+            <summary>_When and where is DFT conducted?_</summary>
             <p>
 DFT is conducted during the early stages of DFT.
 It is usually conducted before the synthesis stage as well as before the final netlist generation.
             </p>
-            <summary>Pro's and Con's of DFT</summary>
+            <summary>_Pro's and Con's of DFT_</summary>
             <p>
 Pro's:
+
 -> Reduces Test Time
+
 -> Reduces Costs
+
 -> Early Fault Detection
+
 -> Improves Design Reliability
+
 Con's:
+
 -> Increases Area of Design
+
 -> Increases Power Consumption
+
 -> Might Reduce Performance
+
 -> Increased Design Time
             </p>
-            <summary>Basic Terminologies in DFT</summary>
+            <summary>_Basic Terminologies in DFT_</summary>
             <p>
 -> Controllability: Ability to control a circuit's state or it's logic.
+
 -> Observability: Ability to observe the circuit's state or logic.
+
 -> Fault: Defect detected in design that may lead to system failure.
+
 -> Error: A wrong signal outputted by a circuit.
+
 -> Failure: Repeated occurances of faults or errors that leads to system failure.
+
 -> Fault Coverage: The effectiveness of a test set in detecting faults. Calculated using percentage of faults that can be tested.
+
 -> Defect Level: Refers to the number of defect chips which aren't detected as defected.
             </p>
-            <summary>How long can scan chains be?</summary>
+            <summary>_How long can scan chains be?_</summary>
             <p>
 Scan chains can be however long but the trade-offs need to taken into account.
 With longer scan chains, the trade offs are:
+
 -> Increase in number of ports
+
 -> Increase in Area
+
 -> Decrease in Performance
+
 -> Increase in Test Time
             </p>
-            <summary>Draw the waveform of the following?
+            <summary>_Draw the waveform of the following?_
             <img width="1055" alt="Screenshot 2024-05-29 at 2 47 43 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/83cf58f1-9371-4767-b6fb-ceabd259190f">
             </summary>
             <p>
