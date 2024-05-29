@@ -770,6 +770,8 @@ run command 'show' to view the design
         </li>
     </ul>
 </details>
+<!--End of Day 3-->
+
 <!--End of Day 4-->
 <details>
     <summary>Day 5: DFT</summary>
