@@ -771,7 +771,249 @@ run command 'show' to view the design
     </ul>
 </details>
 <!--End of Day 3-->
-
+<details>
+    <summary>Day 4: Gate Level Simulation, Synthesis Simulation Mismatch, and Blocking & Non-Blocking Statements </summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Lab on GLS and Synth Simulation Mismatch</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>PART 1: For ternary_operator_mux</summary>
+                            <p>Step 1</p>
+                            <pre>
+Load ternary_operator_mux.v & its testbench to Iverilog.
+<img width="1333" alt="Screenshot 2024-05-26 at 2 25 18 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5fb664a3-428b-40b5-95c3-6e5e76385d2e">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Execute a.out file.
+<img width="831" alt="Screenshot 2024-05-26 at 2 25 28 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0845279c-0fdb-458a-b911-593f7f138990">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Load the .vcd file genrated into GTKWave.
+<img width="895" alt="Screenshot 2024-05-26 at 2 25 46 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/a17efccf-4528-4b08-856c-e3366dea9441">
+The ternary_operator_mux's behavior is analyzed on GTKWave                            
+<img width="1374" alt="Screenshot 2024-05-26 at 2 26 56 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b2f81f99-be77-4d8f-8c5f-c76efa0db555">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Invoke Yosys by using command yosys
+<img width="817" alt="Screenshot 2024-05-26 at 2 27 23 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5aeace9b-91d1-43df-b7a7-95a22d2f7dca">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Read the library using read_liberty
+<img width="733" alt="Screenshot 2024-05-26 at 2 27 36 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c7df753c-4859-4517-b10b-844be452fbc0">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Read the ternary_operator_mux.v using read_verilog
+<img width="754" alt="Screenshot 2024-05-26 at 2 27 54 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9bd5d509-2035-4be9-b17f-084f80f58835">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Define the module that needs to be synthesized
+<img width="397" alt="Screenshot 2024-05-26 at 2 28 29 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6b23f59f-4e02-43ec-932b-750d183b30f0">
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Generate the netlist using abc command
+<img width="622" alt="Screenshot 2024-05-26 at 2 28 54 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9565e3d5-66ba-45ef-8464-7cec13c5cdd4">
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Write the netlist to ternary_operator_mux_net.v
+<img width="490" alt="Screenshot 2024-05-26 at 2 29 20 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/61065d52-6532-4a74-b8ae-34b8734fbce6">
+                            </pre>
+                            <p>Step 10</p>
+                            <pre>
+Execute show to view the design
+<img width="609" alt="Screenshot 2024-05-26 at 2 29 30 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/76ee78c8-95fe-47e6-a9aa-ec2b6fa1e9c1">
+                            </pre>
+                            <p>Step 11</p>
+                            <pre>
+Exit yosys and load the ternary_operator_mux_net.v to iverilog.
+<img width="1372" alt="Screenshot 2024-05-26 at 2 32 32 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/30cf677a-e529-4f09-a0e2-7d77f5ab48e5">
+                            </pre>
+                            <p>Step 12</p>
+                            <pre>
+Execute a.out file.
+<img width="829" alt="Screenshot 2024-05-26 at 2 32 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9194b986-d637-4919-9a9a-a66ef5fd8150">
+                            </pre>
+                            <p>Step 13</p>
+                            <pre>
+Load the generated .vcd file into GTKWave
+<img width="1107" alt="Screenshot 2024-05-26 at 2 33 19 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4b04c1e3-5aff-4937-9670-706364e92fa3">
+                            </pre>
+                            <p>Step 14</p>
+                            <pre>
+Observe the GLS of ternary_operator_mux
+<img width="1357" alt="Screenshot 2024-05-26 at 2 33 52 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/746f372e-4dd9-4da4-a4ff-57836f00945e">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>PART 2: For bad_mux</summary>
+                            <p>Step 1</p>
+                            <pre>
+Load bad_mux.v & its testbench to Iverilog.
+<img width="1072" alt="Screenshot 2024-05-26 at 2 47 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3886f80b-b39e-4f91-9cfb-d7fd26f87a2b">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Execute a.out file.
+<img width="836" alt="Screenshot 2024-05-26 at 2 47 59 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/80bff7b8-6f38-42e9-b7ee-b527d9e06de7">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Load the .vcd file genrated into GTKWave.
+<img width="980" alt="Screenshot 2024-05-26 at 2 48 17 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/94c68039-9cd8-435f-b02d-914619642094">
+The bad_mux's behavior is analyzed on GTKWave                            
+<img width="1362" alt="Screenshot 2024-05-26 at 2 49 01 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cb432d9f-023b-4b28-ac59-c25e9abff098">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Invoke Yosys by using command yosys
+<img width="815" alt="Screenshot 2024-05-26 at 2 49 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3a80b296-11d9-4150-ae87-17d6d2c971d1">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Read the library using read_liberty
+<img width="731" alt="Screenshot 2024-05-26 at 2 49 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4e9fade6-5f81-41ac-a5d1-f3dbf9c35e98">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Read the bad_mux.v using read_verilog
+<img width="756" alt="Screenshot 2024-05-26 at 2 49 40 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3d74ecc6-a028-4c2f-bf0b-9567d5270b26">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Define the module that needs to be synthesized
+<img width="268" alt="Screenshot 2024-05-26 at 2 50 33 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ac8165b4-4a23-46ad-8196-242af9a8a9a8">
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Generate the netlist using abc command
+<img width="612" alt="Screenshot 2024-05-26 at 2 50 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ca4dc976-5645-4c1f-878c-650c93136276">
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Write the netlist to bad_mux_net.v
+<img width="364" alt="Screenshot 2024-05-26 at 2 51 09 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/87c4ebdf-95ff-4a34-847e-d49d5fe62e2a">
+                            </pre>
+                            <p>Step 10</p>
+                            <pre>
+Execute show to view the design
+<img width="603" alt="Screenshot 2024-05-26 at 2 51 21 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/287737a1-3d21-4fde-8578-7a65d568b560">
+                            </pre>
+                            <p>Step 11</p>
+                            <pre>
+Exit yosys and load the bad_mux_net.v to iverilog.
+<img width="1368" alt="Screenshot 2024-05-26 at 2 52 52 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f4bc8f2c-e08a-4675-be9a-e905b879c28a">
+                            </pre>
+                            <p>Step 12</p>
+                            <pre>
+Execute a.out file.
+<img width="835" alt="Screenshot 2024-05-26 at 2 53 02 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7813fe2a-bb20-43de-9cf7-ec53c1459f51">
+                            </pre>
+                            <p>Step 13</p>
+                            <pre>
+Load the generated .vcd file into GTKWave
+<img width="979" alt="Screenshot 2024-05-26 at 2 53 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/87f26967-6d37-45e9-963e-15d4107e767f">
+                            </pre>
+                            <p>Step 14</p>
+                            <pre>
+Observe the behavior of GLS of ternary_operator_mux due to Simulation Mismatch
+<img width="1365" alt="Screenshot 2024-05-26 at 2 53 59 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/16ececd7-a724-43be-91a3-b394763a3678">
+                            </pre>          
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Synthesis Simulation Mismatch</summary>
+                <p>Step 1</p>
+                <pre>
+Load blocking_caveat.v & its testbench to Iverilog.
+<img width="1232" alt="Screenshot 2024-05-26 at 3 20 01 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/98e89aec-e1e0-4371-9865-7f4d46970466">
+                </pre>
+                <p>Step 2</p>
+                <pre>
+Execute a.out file.
+<img width="831" alt="Screenshot 2024-05-26 at 3 20 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cabfbd67-5caf-467e-a4fe-36b9dd3613ae">
+                </pre>
+                <p>Step 3</p>
+                <pre>
+Load the .vcd file genrated into GTKWave.
+<img width="1056" alt="Screenshot 2024-05-26 at 3 20 37 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cd3b4d01-c92d-40e8-842f-e41fcb512967">
+The blocking_caveat's behavior is analyzed on GTKWave                            
+<img width="1362" alt="Screenshot 2024-05-26 at 3 21 17 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0313fa9c-df40-46d2-9e31-0e18b9eb5b84">
+                </pre>
+                <p>Step 4</p>
+                <pre>
+Invoke Yosys by using command yosys
+<img width="809" alt="Screenshot 2024-05-26 at 3 21 29 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/45aa14d6-5cc0-4a4d-b629-74bc87fda4fa">
+                </pre>
+                <p>Step 5</p>
+                <pre>
+Read the library using read_liberty
+<img width="727" alt="Screenshot 2024-05-26 at 3 21 43 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e4aa45a5-c575-4ecc-9fe6-e10553ba31da">
+                </pre>
+                <p>Step 6</p>
+                <pre>
+Read the blocking_caveat.v using read_verilog
+<img width="709" alt="Screenshot 2024-05-26 at 3 21 55 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2c84de8b-63bc-4394-b833-79569ab86d0c">
+                </pre>
+                <p>Step 7</p>
+                <pre>
+Define the module that needs to be synthesized
+<img width="596" alt="Screenshot 2024-05-26 at 3 23 34 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/886c9129-5cf7-4622-8857-326ffef0597f">
+                </pre>
+                <p>Step 8</p>
+                <pre>
+Generate the netlist using abc command
+<img width="615" alt="Screenshot 2024-05-26 at 3 24 14 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3035c361-2a06-41ca-8363-5a40d4827d87">
+                </pre>
+                <p>Step 9</p>
+                <pre>
+Write the netlist to blocking_caveat_net.v
+<img width="523" alt="Screenshot 2024-05-26 at 3 25 02 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cef23d28-8d32-4c0c-941f-a0420db792d6">
+                </pre>
+                <p>Step 10</p>
+                <pre>
+Execute show to view the design
+<img width="603" alt="Screenshot 2024-05-26 at 3 25 14 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f05de1e7-98ce-4ac3-bbaa-fbf14a31336c">
+                </pre>
+                <p>Step 11</p>
+                <pre>
+Exit yosys and load the blocking_caveat_net.v to iverilog.
+<img width="1370" alt="Screenshot 2024-05-26 at 3 27 05 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/db39196e-3fba-424f-95ad-6b2f2e069d03">
+                </pre>
+                <p>Step 12</p>
+                <pre>
+Execute a.out file.
+<img width="832" alt="Screenshot 2024-05-26 at 3 27 14 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/897f10b8-5491-46d7-a7ff-ca0eac28123a">
+                </pre>
+                <p>Step 13</p>
+                <pre>
+Load the generated .vcd file into GTKWave
+<img width="1059" alt="Screenshot 2024-05-26 at 3 27 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2f6188c0-d262-48f1-a756-24f1c709de6f">
+                </pre>
+                <p>Step 14</p>
+                <pre>
+Observe the behavior of GLS of blocking_caveat due to Simulation Mismatch
+<img width="1357" alt="Screenshot 2024-05-26 at 3 28 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4f2dcd1c-5d73-474e-bf68-12c82ff30205">
+                </pre>
+            </details>
+        </li>
+    </ul>
+</details>
 <!--End of Day 4-->
 <details>
     <summary>Day 5: DFT</summary>
