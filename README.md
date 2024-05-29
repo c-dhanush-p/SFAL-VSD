@@ -1191,7 +1191,7 @@ Invoke DC using 'dc_shell'
                             <p>Step 4</p>
                             <pre>
 Read library
-<img width="1336" alt="Screenshot 2024-05-29 at 11 58 18 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ace1b3f0-6e4c-4e2b-a2b9-dc24084b15dd">
+<img width="1095" alt="Screenshot 2024-05-30 at 12 39 11 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/18a875ce-7f44-4c99-ba0c-48f47da0254d">
                             </pre>
                             <p>Step 5</p>
                             <pre>
@@ -1245,54 +1245,87 @@ View the written netlist
                             <summary>PART 2: Intro to Design Vision</summary>
                             <p>Step 1</p>
                             <pre>
-In Yosys, read the library
-<img width="742" alt="Screenshot 2024-05-25 at 6 07 46 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f7d5a769-be16-4bb1-8b92-bfa3ac26ade0">
+Enable C Shell
+<img width="266" alt="Screenshot 2024-05-29 at 11 15 11 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/218718b8-1f4c-4c5d-b3ab-d476a4f039e6">
                             </pre>
                             <p>Step 2</p>
                             <pre>
-Read the verilog file for Asynchronous Reset for D-Flip Flop
-<img width="676" alt="Screenshot 2024-05-25 at 6 08 24 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d98c8b23-14d0-447c-8673-b8a8289fbfd1">
+Use 'design_vision' to laugh gui format of Design Compiler
+<img width="358" alt="Screenshot 2024-05-30 at 12 33 34 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f7241987-1b33-4b8a-8b02-c2eefe976a03">
+<img width="800" alt="Screenshot 2024-05-30 at 12 34 34 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6cf70b0e-b2ab-4b47-9f17-c9246d91e070">
                             </pre>
                             <p>Step 3</p>
                             <pre>
-Define the module to be sunthesized
-<img width="328" alt="Screenshot 2024-05-25 at 6 09 26 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/28083be8-f27b-4be0-91c5-546b5e58155b">
+Write .ddc in dc_shell
+<img width="334" alt="Screenshot 2024-05-30 at 12 44 08 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0c1efd7b-1df6-441d-80e4-a1db95c0c52c">
                             </pre>
                             <p>Step 4</p>
                             <pre>
-Map  the flip flops in the library for synthesis
-<img width="887" alt="Screenshot 2024-05-25 at 6 10 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/137cc8c9-0908-4e76-af12-94c682009a93">
+In design_vision, run 'start_gui'
+<img width="230" alt="Screenshot 2024-05-30 at 12 46 58 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/55918560-bb8c-4560-b7c9-809843f7e67b">
                             </pre>
                             <p>Step 5</p>
                             <pre>
-Generate the netlist
-<img width="898" alt="Screenshot 2024-05-25 at 6 11 43 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1b986c23-31dd-4d6d-aa74-4df281b2009c">
+Read ddc in Design Vision GUI
+<img width="980" alt="Screenshot 2024-05-30 at 12 50 39 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/264a0f84-f367-4811-ad4a-83a2177edd5d">
                             </pre>
                             <p>Step 6</p>
                             <pre>
-Execute show to view the netlist for the Asynchronous Reset D-Flip Flop
-<img width="1373" alt="Screenshot 2024-05-25 at 6 12 04 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f2ed91e7-5a74-4bc1-9345-20266e043938">
+Open the Schematic View of the design
+<img width="766" alt="Screenshot 2024-05-30 at 12 56 46 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/337b99c6-7f60-4fe5-ad1d-a2d50cfed1da">
+<img width="1414" alt="Screenshot 2024-05-30 at 12 57 35 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7abb8a0e-d20c-4343-afa8-2d5f69250e49">
                             </pre>
                             <p>Step 7</p>
                             <pre>
-Repeat Steps 2-5 using for the Asynchronous Set D-Flip Flop
-                            </pre>
-                            <p>Step 8</p>
-                            <pre>
-Execute show to view the netlist design for the Ashynchronous Set D-Flip Flop
-<img width="1369" alt="Screenshot 2024-05-25 at 6 31 28 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/12fa0bd2-5b1d-4407-a983-2dc652d11c8a">
-                            </pre>
-                            <p>Step 9</p>
-                            <pre>
-Repeat Steps 2-5 using for the Synchronous Reset D-Flip Flop
-                            </pre>
-                            <p>Step 9</p>
-                            <pre>
-Execute show to view the netlist design for the Synchronous Reset D-Flip Flop
-<img width="1371" alt="Screenshot 2024-05-25 at 6 36 55 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8177cd93-1abe-4674-a81f-ceb7b86dc48e">
+Double-Click on the module to view the standard cells
+<img width="1129" alt="Screenshot 2024-05-30 at 12 58 19 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/57cd7f17-18ac-442b-b67e-aeaa5adbd67c">
                             </pre>
                         </details>
-                    </li>    
+                    </li>
+                    <li>
+                        <details>
+                            <summary>PART 3: Design Compiler Synopsys Setup</summary>
+                            <p>Step 1</p>
+                            <pre>
+Use gvim to open a new file
+<img width="434" alt="Screenshot 2024-05-30 at 1 14 02 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4597f1e5-0d35-463d-a313-980bab39beb2">
+                            </pre>          
+                            <p>Step 2</p>
+                            <pre>
+Add the following to the file and save
+<img width="891" alt="Screenshot 2024-05-30 at 1 15 36 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3e6ab3e5-6963-4874-9eb0-0d7564bc6280">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Enable C Shell
+<img width="266" alt="Screenshot 2024-05-29 at 11 15 11 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/218718b8-1f4c-4c5d-b3ab-d476a4f039e6">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Invoke DC using 'dc_shell'
+<img width="326" alt="Screenshot 2024-05-29 at 11 16 44 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1ddf90d6-6063-4aba-9b78-d7a9130302d2">
+<img width="1035" alt="Screenshot 2024-05-29 at 11 17 33 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5c5cb34f-43d4-459f-978e-eeef164e5dcb">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Run echo to check target library
+<img width="789" alt="Screenshot 2024-05-30 at 1 17 14 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7334fef5-3a9f-4c4c-b3af-9f9563294a71">
+Note:
+- Notice that the target library is already set without having to run read_db
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Open the Schematic View of the design
+<img width="766" alt="Screenshot 2024-05-30 at 12 56 46 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/337b99c6-7f60-4fe5-ad1d-a2d50cfed1da">
+<img width="1414" alt="Screenshot 2024-05-30 at 12 57 35 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7abb8a0e-d20c-4343-afa8-2d5f69250e49">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Double-Click on the module to view the standard cells
+<img width="1129" alt="Screenshot 2024-05-30 at 12 58 19 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/57cd7f17-18ac-442b-b67e-aeaa5adbd67c">
+                            </pre>
+                        </details>
+                    </li>
                 </ul>
             </details>
         </li>
