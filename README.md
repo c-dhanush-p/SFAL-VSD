@@ -1107,3 +1107,195 @@ A posedge clock was considered for designing the waveform.
     </ul>
 </details>
 <!--End of Day 5-->
+<details>
+    <summary>Day 6: Introduction to Logic Synthesis</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Logic Synthesis</summary>
+                <p>What is Logic Synthesis</p>
+                <pre>
+- Logic synthesis takes an RTL description of a circuit and converts it into a netlist of logic gates and their connections.
+- HDL Compiler is used to convert RTL to Generic Boolean (without timing info)
+- Design Compiler is used to convert the Generic Boolean into our Target Technology (with timing info)
+                </pre>
+                <p>What is Design Compiler</p>
+                <pre>
+- Design Compiler (DC) is a EDA tool used for Synthesis made by Synopsys
+- dc_shell is used as the text interface & Design Vision is used as the graphical interface for the users
+- Uses the .db format for library files
+- .ddc files contain design information which can be used across various Synopsys tools
+- Synopsys Design Constraint (SDC) file contains information about design constraints (power, timing and area) and uses TCL script
+                </pre>
+                <p>Design Compiler Flow</p>
+                <pre>
+|  Set & link .db 
+V  Read .v filed
+|  Read SDC
+V  Integrate the Design
+|  Synthesize
+V  Report
+|  Check Quality of Results (qor) files
+V  Write Netlist
+                </pre>
+                <p>Netlist & Libraries</p>
+                <pre>
+- Design is written using standard cells (gates, mux, flops, etc) provided in .db
+- Target Library is the database with standard cell information (area, pin names, timing)
+- Multiple libraries can be appended using link library
+                </pre>
+                <p>Getting Started:</p>
+                <pre>
+- Target & link libraries must be specified.
+- File formats have to be considered.
+- For GUI:
+    design_vision
+- For non-GUI:
+    dc_shell
+- From non-GUI to GUI:
+    gui_start/start_gui
+- .synopsys_dc.setup is used for integrating libraries at startup
+                </pre>
+                <p>TCL Tips</p>
+                <pre>
+- Keep track of bracket types.
+- Referring a variable uses $ at start.
+- Assigning a variable doesn't require $ at start.
+- * is used for matching string of characters
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Design Compiler Introduction</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>PART 1: Invoking DC Basic Setup </summary>
+                            <p>Step 1</p>
+                            <pre>
+Go to work directory
+<img width="272" alt="Screenshot 2024-05-29 at 11 10 10 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c1898944-c657-4367-9dfe-77669b0735ea">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Enable C Shell
+<img width="266" alt="Screenshot 2024-05-29 at 11 15 11 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/218718b8-1f4c-4c5d-b3ab-d476a4f039e6">
+                            </pre>          
+                            <p>Step 3</p>
+                            <pre>
+Invoke DC using 'dc_shell'
+<img width="326" alt="Screenshot 2024-05-29 at 11 16 44 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1ddf90d6-6063-4aba-9b78-d7a9130302d2">
+<img width="1035" alt="Screenshot 2024-05-29 at 11 17 33 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5c5cb34f-43d4-459f-978e-eeef164e5dcb">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Read library
+<img width="1336" alt="Screenshot 2024-05-29 at 11 58 18 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ace1b3f0-6e4c-4e2b-a2b9-dc24084b15dd">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Set target library
+<img width="1198" alt="Screenshot 2024-05-29 at 11 38 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f3398dc4-f491-4523-b08d-801678c27e7a">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Set link library
+<img width="1224" alt="Screenshot 2024-05-29 at 11 40 09 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1b3cacfd-f359-4f30-94e6-c39d9b9433f2">
+Note: 
+- This step is important to specify the said library for our design.
+- '*' represents the library that is already loaded to DC. This is done to avoid overwriting of existing libraries.
+- If the library was read and set after writing the netlist (Step 7), you can use 'link' after to link the library to the design
+<img width="1314" alt="Screenshot 2024-05-29 at 11 59 30 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5d833966-4a25-4814-9021-4d700f848ccc">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+You can use echo to check locations of target library and link library
+<img width="953" alt="Screenshot 2024-05-30 at 12 02 34 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/906bda39-e7b9-4c60-8c1f-4f25ee81a205">
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Read verilog
+<img width="1300" alt="Screenshot 2024-05-29 at 11 45 27 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/313fb49e-f4b7-45f9-8ec6-f9dd2589476e">
+Note:
+- The register information tells us that the design is a 1-bit Flip Flop
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Compile the design
+<img width="1112" alt="Screenshot 2024-05-30 at 12 08 13 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/188ec2ad-4474-4ced-9772-fcf4f292505b">
+                            </pre>
+                            <p>Step 10</p>
+                            <pre>
+Write verilog
+<img width="485" alt="Screenshot 2024-05-29 at 11 51 13 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6e361556-5c2a-4e1a-a4e5-d71d50614840">
+Note:
+- -f refers to the format of the file to be written
+                            </pre>
+                            <p>Step 11</p>
+                            <pre>
+View the written netlist
+<img width="263" alt="Screenshot 2024-05-29 at 11 53 29 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2711f662-f59a-4f7c-9c0d-cec9f95f8a1f">
+<img width="622" alt="Screenshot 2024-05-30 at 12 11 10 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5b6be879-a9e0-469f-9f12-db9224510c5b">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>PART 2: Intro to Design Vision</summary>
+                            <p>Step 1</p>
+                            <pre>
+In Yosys, read the library
+<img width="742" alt="Screenshot 2024-05-25 at 6 07 46 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f7d5a769-be16-4bb1-8b92-bfa3ac26ade0">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Read the verilog file for Asynchronous Reset for D-Flip Flop
+<img width="676" alt="Screenshot 2024-05-25 at 6 08 24 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d98c8b23-14d0-447c-8673-b8a8289fbfd1">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Define the module to be sunthesized
+<img width="328" alt="Screenshot 2024-05-25 at 6 09 26 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/28083be8-f27b-4be0-91c5-546b5e58155b">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Map  the flip flops in the library for synthesis
+<img width="887" alt="Screenshot 2024-05-25 at 6 10 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/137cc8c9-0908-4e76-af12-94c682009a93">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Generate the netlist
+<img width="898" alt="Screenshot 2024-05-25 at 6 11 43 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1b986c23-31dd-4d6d-aa74-4df281b2009c">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Execute show to view the netlist for the Asynchronous Reset D-Flip Flop
+<img width="1373" alt="Screenshot 2024-05-25 at 6 12 04 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f2ed91e7-5a74-4bc1-9345-20266e043938">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Repeat Steps 2-5 using for the Asynchronous Set D-Flip Flop
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Execute show to view the netlist design for the Ashynchronous Set D-Flip Flop
+<img width="1369" alt="Screenshot 2024-05-25 at 6 31 28 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/12fa0bd2-5b1d-4407-a983-2dc652d11c8a">
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Repeat Steps 2-5 using for the Synchronous Reset D-Flip Flop
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Execute show to view the netlist design for the Synchronous Reset D-Flip Flop
+<img width="1371" alt="Screenshot 2024-05-25 at 6 36 55 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8177cd93-1abe-4674-a81f-ceb7b86dc48e">
+                            </pre>
+                        </details>
+                    </li>    
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+<!--End of Day 6-->
