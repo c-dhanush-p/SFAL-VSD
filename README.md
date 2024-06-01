@@ -1329,6 +1329,76 @@ Double-Click on the module to view the standard cells
                 </ul>
             </details>
         </li>
+        <li>
+            <details>
+                <summary>TCL Scripting Lab</summary>
+                <p>Step 1: Basic Commands</p>
+                <pre>
+Run the following commands to understand how to initialize and view variables
+'set i 0' For setting a variable i to a value 0 
+'echo $i' For checking value of i
+'incr i' For incrementing the value of i
+<img width="165" alt="Screenshot 2024-05-31 at 1 30 09 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5c2790b3-6439-4163-a2ef-c8e348a1a911">
+                </pre>
+                <p>Step 2: Run 'For' Loop</p>
+                <pre>
+Notice the error due to incorrect syntax,
+<img width="427" alt="Screenshot 2024-05-31 at 1 28 53 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6b152b5f-6e95-4961-97fb-d9983f72a0b5">
+The correct syntax is:
+<img width="401" alt="Screenshot 2024-05-31 at 1 37 41 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6fa010df-12d3-48d4-91f3-50752522f535">
+The output is:
+<img width="28" alt="Screenshot 2024-05-31 at 1 37 48 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1149a596-263b-4e3a-9441-38c32a635812">
+                </pre>
+                <p>Step 3: Run 'While' Loop</p>
+                <pre>
+Notice the error due to incorrect syntax,
+<img width="463" alt="Screenshot 2024-05-31 at 1 43 55 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/892ca95e-bb43-4ec7-99f9-b718cce488a5">
+The correct syntax is:
+<img width="249" alt="Screenshot 2024-05-31 at 1 44 52 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c2707c00-1988-4b32-9232-896b241bdbbe">
+The output is:
+<img width="28" alt="Screenshot 2024-05-31 at 1 37 48 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2ef02fea-58cb-4b61-93d2-349c767fbf09">
+                </pre>
+                <p>Step 3: Incrementing a variable</p>
+                <pre>
+Another way to increment a value other than the method shown in Step 1 & 2:
+<img width="253" alt="Screenshot 2024-05-31 at 1 49 16 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets//daebf341-0464-4561-8155-4dde2c892758">
+You can verify it by checking the output:
+<img width="24" alt="Screenshot 2024-05-31 at 1 49 45 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/98fb4c55-3777-4b0b-9a5c-de4fa8bf4942">
+                </pre>
+                <p>Step 4: Creating a list</p>
+                <pre>
+Create a list using set command.
+<img width="382" alt="Screenshot 2024-05-31 at 4 05 36 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/340a940d-ab8c-4371-b856-178be9744d3f">
+                </pre>
+                <p>Step 5: Looping through the list</p>
+                <pre>
+Instantiating my_var to each item in the list and printing it out until all the items from the list have been printed
+<img width="28" alt="Screenshot 2024-05-31 at 1 37 48 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3357d475-d5ce-4259-8b1b-d4d46a187593">
+                </pre>
+                <p>Step 6: Looping through a collection</p>
+                <pre>
+View all AND gates in .db file
+<img width="1434" alt="Screenshot 2024-05-31 at 5 19 00 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c3209e08-df45-4b3f-bad6-dbfd31172127">
+Instantiate my_var_name as the object name of my_var & print my_var_name
+<img width="581" alt="Screenshot 2024-05-31 at 5 26 37 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/33e5965b-905e-4d76-b4b9-5fbfb71b18a7">
+                </pre>
+                <p>Step 7: Creating a TCL Script from DC</p>
+                <pre>
+Launch gvim from within DC
+<img width="183" alt="Screenshot 2024-05-31 at 9 15 44 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9262935c-0634-49e9-b7ce-1362fc2365d4">
+Press i to enter 'insert mode' and edit document with few TCL commands to test
+<img width="1282" alt="Screenshot 2024-06-01 at 1 25 23 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ebbaa3d0-7f7a-4a55-a2e4-b18c1fed3bca">
+Save file as 'myscript.tcl'
+                </pre>
+                <p>Step 8: Executing a TCL Script from DC</p>
+                <pre>
+Source the saved file
+<img width="271" alt="Screenshot 2024-05-31 at 9 29 39 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6a4b7cf3-b6fd-4373-9667-6837f429c49f">
+View that the output is as expected with all the commands added to myscript.tcl getting executed.
+<img width="1440" alt="Screenshot 2024-06-01 at 1 26 22 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ecf5c13a-0396-40c4-8627-1ee0272699b9">
+                </pre>
+            </details>
+        </li>
     </ul>
 </details>
 <!--End of Day 6-->
