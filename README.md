@@ -1,5 +1,5 @@
 <details>
-    <summary>Day 0: System Tools Setup</summary>
+<summary>Day 0: System Tools Setup</summary>
     <ul>
         <li>
             <details>
@@ -1402,3 +1402,127 @@ View that the output is as expected with all the commands added to myscript.tcl 
     </ul>
 </details>
 <!--End of Day 6-->
+<details>
+    <summary>Day 7: Basics of STA (Exploring .libs)</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Timing .libs</summary>
+                <p>Understanding the .lib settings</p>
+                <pre>              
+Open .lib using gvim to understand the settings
+<img width="1440" alt="Screenshot 2024-06-03 at 7 53 58 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4de27d3a-0bde-4039-b548-a66950f794c6">
+Notice the timing, voltage, power, current, resistance and capacitive units.
+                </pre>
+                <p>Max Transition</p>
+                <pre>              
+In a circuit such as the one below, output pin has a capacitance, each net has a capacitance, and input of each gate also has a capacitance. The load capacitance is the sum of all these capacitances. However, a larger capacitance gives rise to high delay which is not convenient. 
+<img width="475" alt="Screenshot 2024-06-03 at 8 07 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/591fac3b-d8b0-4333-b21c-bd73d26aa319">
+To solve this issue, we set a maximum capacitance. DC checks if a gate has a heavy load of capacitance (higher than the set capacitance) and breaks the net to create buffers to share the load in the following manner.
+Point to note is that this limit set is a last resort scenario and this limit should never be met. 
+<img width="256" alt="Screenshot 2024-06-03 at 8 21 01 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/33fd4053-2b51-4c77-b79f-283e5e09946a">
+                </pre>
+                <p>Delay Model Lookup Table</p>
+                <pre>              
+Delay is a function of input transition and output capacitance. For each cell, there's a table including delay information for each input transition and their corresponding output capacitances.
+Design Compiler calculates the delay of a gate using the transition at input and output load. Using these values, the range of delay information is looked up from the lookup table and then they are interpolated to find the delay.
+There are other such lookup tables for other parameters of a cell such as for power.
+<img width="870" alt="Screenshot 2024-06-03 at 11 43 26 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9faa737d-bae0-4679-9b1a-91c08923d92e">
+                </pre>
+                <p>Comparing Cells</p>
+                <pre>              
+View the 2 AND Gates in gvim
+<img width="1187" alt="Screenshot 2024-06-03 at 11 50 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6b5320e8-1b22-4191-bdf3-86ab9a09c7df">
+You can see that the area in and2_2 is higher than the area in and2_0, implying that and2_2 is wider than and2_0 and that delay in and2_0 is going to be more when compared to and2_2.
+You can also observe that along with these comparisons, .lib also gives us information about its power pins ( GND, nwell and pwell connections), leakage power, pin capacitance, max transition, direction of pins (input/output), falling power & rising power at various transitions, and timing information.
+                </pre>
+                <p>Unateness</p>
+                <pre>              
+Unateness describes the property where the output increses or decreases based on the change in inputs. These are categorized into three types:
+- Positive Unateness:
+                In this, when the input value increases, the output value either increases or stays the same. Similarly, when the input value decreases, the output value either decreases or stays the same. Ex: AND Gate, OR Gate, etc.
+- Negative Unateness:
+                In this, when the input value increases, the output value either decreases or stays the same. Similarly, when the input value decreases, the output value either increases or stays the same. Ex: NOT Gate, NAND Gate, NOR Gate, etc. 
+- Non-Unate:
+                In this, the change in input value doesn't determine the change in output value. Ex: XOR Gate, XNOR Gate.
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Exploring .libs</summary>
+                <p>Understanding Flip Flops</p>
+                <pre>
+
+Name of Clock Pin of FF:
+    'CLK_N' - Negative Edge Clock
+    'CLK_P/CLK' - Positive Edge Clock
+
+The Output Pin's (Q) timing type with respect to Clock Signal (CLK):
+    'Rising Edge' - Denotes that Flip Flop is Positive Edge Triggered
+    'Falling Edge' - Denotes that Flip Flop is Negative Edge Triggered
+                </pre>
+                <p>Understanding Latches</p>
+                <pre>
+Setup Time of Positive Latch is at the Negative Edge Clock
+
+Setup Time of Negative Latch is at the Positive Edge Clock
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Exploring .libs (Querying the properties of .lib using DC Shell)</summary>
+                <p>Step 1: Viewing all AND Gates in Library</p>
+                <pre>
+With the library loaded and assuming all AND Gates are named using and, use get_lib_cells to view all the AND Gates.
+<img width="1429" alt="Screenshot 2024-06-11 at 9 13 48 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c71cb5f8-6326-43e4-bd8a-551127a7ec6b">
+                </pre>
+                <p>Step 2: Viewing the gates one after the other instead of as a collection</p>
+                <pre>
+use foreach_in_collection and get_object_name to view the AND Gates one by one.
+<img width="637" alt="Screenshot 2024-06-11 at 9 37 53 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d605c087-e0cd-4977-bdb9-9a13b84622ef">
+                </pre>
+                <p>Step 3: Viewing the pins of a cell</p>
+                <pre>
+Use get_lib_pins to view the pins of any cell.
+<img width="1426" alt="Screenshot 2024-06-11 at 9 43 57 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/74928568-f2a0-454c-8339-4611e6c62010">
+                </pre>
+                <p>Step 4: Viewing the direction of pins</p>
+                <pre>
+Use foreach_in_collection and get_lib_attribute to view the direction of pins.
+<img width="1011" alt="Screenshot 2024-06-11 at 9 52 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/523e2afa-ecfc-432c-891d-a75122b9fa92">
+                </pre>
+                <p>Step 4: Viewing the functionality on output pin</p>
+                <pre>
+Use get_lib_attribute along with function to view the functionality of pins.
+<img width="946" alt="Screenshot 2024-06-11 at 9 58 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9ad5e61f-0663-485a-810d-c6c11cb9034d">
+We can see that the functionality is an AND Gate as expected
+                </pre>
+                <p>Step 5: Viewing the output pin and its functionality for each cell in a list</p>
+                <pre>
+Creat a TCL script listing all the gates and to view output pins of each gate and their functionality.
+<img width="442" alt="Screenshot 2024-06-11 at 10 17 36 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/de1522e9-61c3-41a1-87cc-fdc911366e22">
+Source this script in dc_shell.
+<img width="981" alt="Screenshot 2024-06-11 at 10 18 59 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/438f9567-3e05-4ee5-a443-6e5e06ad514a">
+You can see the output pin of each gate along with their functionality.
+                </pre>
+                <p>Step 6: Other Attributes</p>
+                <pre>
+To view the area of a cell.
+<img width="955" alt="Screenshot 2024-06-11 at 10 22 02 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6b50059f-7b68-4572-80c5-c1f68ee76206">
+To view the capacitance of a pin.
+<img width="994" alt="Screenshot 2024-06-11 at 10 24 42 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0bbe80c5-89ef-41bd-8d67-ba77e8d66fa0">
+To view whether a pin is a clock signal.
+<img width="991" alt="Screenshot 2024-06-11 at 10 26 06 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5cbbcedc-4afb-48e4-922e-9c098419b6d2">
+To know whether there are any sequential cells in the library.
+<img width="1429" alt="Screenshot 2024-06-11 at 10 28 22 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4da4c3a2-5c3c-42fd-af3a-7d98d560d101">
+To list all viewable attributes by dumping that information to a file 'a'.
+<img width="313" alt="Screenshot 2024-06-11 at 10 30 46 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/01f93bc9-5423-40c9-b80d-9ee8f588c584">
+<img width="646" alt="Screenshot 2024-06-11 at 10 31 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/64a02627-b485-4118-840e-d122eff72408">
+                </pre>
+            </details>
+        </li>
+    </ul>
+</details>
+<!--End of Day 7-->
