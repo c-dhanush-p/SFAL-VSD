@@ -334,7 +334,6 @@ generate multiple understandable netlists that can be stitched together.
                             <p>Step 1</p>
                             <pre>
 Run iverilog for an Asynchronous Reset D-Flip Flop using its testbench
-![Screenshot 2024-05-25 at 5 40 49 PM](https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/82b144e5-745a-49d8-9746-bd27aca1c82b)
                             </pre>
                             <p>Step 2</p>
                             <pre>
@@ -1115,7 +1114,8 @@ A posedge clock was considered for designing the waveform.
                 <summary>Logic Synthesis</summary>
                 <p>What is Logic Synthesis</p>
                 <pre>
-- Logic synthesis takes an RTL description of a circuit and converts it into a netlist of logic gates and their connections.
+- Logic synthesis takes an RTL description of a circuit and converts it into a netlist of logic gates and 
+their connections.
 - HDL Compiler is used to convert RTL to Generic Boolean (without timing info)
 - Design Compiler is used to convert the Generic Boolean into our Target Technology (with timing info)
                 </pre>
@@ -1125,7 +1125,8 @@ A posedge clock was considered for designing the waveform.
 - dc_shell is used as the text interface & Design Vision is used as the graphical interface for the users
 - Uses the .db format for library files
 - .ddc files contain design information which can be used across various Synopsys tools
-- Synopsys Design Constraint (SDC) file contains information about design constraints (power, timing and area) and uses TCL script
+- Synopsys Design Constraint (SDC) file contains information about design constraints (power, timing and area) and 
+uses TCL script
                 </pre>
                 <p>Design Compiler Flow</p>
                 <pre>
@@ -1372,7 +1373,8 @@ Create a list using set command.
                 </pre>
                 <p>Step 5: Looping through the list</p>
                 <pre>
-Instantiating my_var to each item in the list and printing it out until all the items from the list have been printed
+Instantiating my_var to each item in the list and printing it out until all the items from the list have been 
+printed
 <img width="28" alt="Screenshot 2024-05-31 at 1 37 48 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3357d475-d5ce-4259-8b1b-d4d46a187593">
                 </pre>
                 <p>Step 6: Looping through a collection</p>
@@ -1416,16 +1418,21 @@ Notice the timing, voltage, power, current, resistance and capacitive units.
                 </pre>
                 <p>Max Transition</p>
                 <pre>              
-In a circuit such as the one below, output pin has a capacitance, each net has a capacitance, and input of each gate also has a capacitance. The load capacitance is the sum of all these capacitances. However, a larger capacitance gives rise to high delay which is not convenient. 
+In a circuit such as the one below, output pin has a capacitance, each net has a capacitance, and input of each 
+gate also has a capacitance. The load capacitance is the sum of all these capacitances. However, a larger 
+capacitance gives rise to high delay which is not convenient. 
 <img width="475" alt="Screenshot 2024-06-03 at 8 07 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/591fac3b-d8b0-4333-b21c-bd73d26aa319">
-To solve this issue, we set a maximum capacitance. DC checks if a gate has a heavy load of capacitance (higher than the set capacitance) and breaks the net to create buffers to share the load in the following manner.
+To solve this issue, we set a maximum capacitance. DC checks if a gate has a heavy load of capacitance (higher 
+than the set capacitance) and breaks the net to create buffers to share the load in the following manner.
 Point to note is that this limit set is a last resort scenario and this limit should never be met. 
 <img width="256" alt="Screenshot 2024-06-03 at 8 21 01 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/33fd4053-2b51-4c77-b79f-283e5e09946a">
                 </pre>
                 <p>Delay Model Lookup Table</p>
                 <pre>              
-Delay is a function of input transition and output capacitance. For each cell, there's a table including delay information for each input transition and their corresponding output capacitances.
-Design Compiler calculates the delay of a gate using the transition at input and output load. Using these values, the range of delay information is looked up from the lookup table and then they are interpolated to find the delay.
+Delay is a function of input transition and output capacitance. For each cell, there's a table including delay 
+information for each input transition and their corresponding output capacitances.
+Design Compiler calculates the delay of a gate using the transition at input and output load. Using these values, 
+the range of delay information is looked up from the lookup table and then they are interpolated to find the delay.
 There are other such lookup tables for other parameters of a cell such as for power.
 <img width="870" alt="Screenshot 2024-06-03 at 11 43 26 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9faa737d-bae0-4679-9b1a-91c08923d92e">
                 </pre>
@@ -1433,16 +1440,22 @@ There are other such lookup tables for other parameters of a cell such as for po
                 <pre>              
 View the 2 AND Gates in gvim
 <img width="1187" alt="Screenshot 2024-06-03 at 11 50 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6b5320e8-1b22-4191-bdf3-86ab9a09c7df">
-You can see that the area in and2_2 is higher than the area in and2_0, implying that and2_2 is wider than and2_0 and that delay in and2_0 is going to be more when compared to and2_2.
-You can also observe that along with these comparisons, .lib also gives us information about its power pins ( GND, nwell and pwell connections), leakage power, pin capacitance, max transition, direction of pins (input/output), falling power & rising power at various transitions, and timing information.
+You can see that the area in and2_2 is higher than the area in and2_0, implying that and2_2 is wider than and2_0 
+and that delay in and2_0 is going to be more when compared to and2_2.
+You can also observe that along with these comparisons, .lib also gives us information about its power pins 
+(GND, nwell and pwell connections), leakage power, pin capacitance, max transition, direction of pins (input/output), 
+falling power & rising power at various transitions, and timing information.
                 </pre>
                 <p>Unateness</p>
                 <pre>              
-Unateness describes the property where the output increses or decreases based on the change in inputs. These are categorized into three types:
+Unateness describes the property where the output increses or decreases based on the change in inputs. These are 
+categorized into three types:
 - Positive Unateness:
-                In this, when the input value increases, the output value either increases or stays the same. Similarly, when the input value decreases, the output value either decreases or stays the same. Ex: AND Gate, OR Gate, etc.
+                In this, when the input value increases, the output value either increases or stays the same. 
+Similarly, when the input value decreases, the output value either decreases or stays the same. Ex: AND Gate, OR Gate, etc.
 - Negative Unateness:
-                In this, when the input value increases, the output value either decreases or stays the same. Similarly, when the input value decreases, the output value either increases or stays the same. Ex: NOT Gate, NAND Gate, NOR Gate, etc. 
+                In this, when the input value increases, the output value either decreases or stays the same. Similarly, 
+when the input value decreases, the output value either increases or stays the same. Ex: NOT Gate, NAND Gate, NOR Gate, etc. 
 - Non-Unate:
                 In this, the change in input value doesn't determine the change in output value. Ex: XOR Gate, XNOR Gate.
                 </pre>
@@ -1475,7 +1488,8 @@ Setup Time of Negative Latch is at the Positive Edge Clock
                 <summary>Exploring .libs (Querying the properties of .lib using DC Shell)</summary>
                 <p>Step 1: Viewing all AND Gates in Library</p>
                 <pre>
-With the library loaded and assuming all AND Gates are named using and, use get_lib_cells to view all the AND Gates.
+With the library loaded and assuming all AND Gates are named using and, use get_lib_cells to view all the 
+AND Gates.
 <img width="1429" alt="Screenshot 2024-06-11 at 9 13 48 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c71cb5f8-6326-43e4-bd8a-551127a7ec6b">
                 </pre>
                 <p>Step 2: Viewing the gates one after the other instead of as a collection</p>
@@ -1534,7 +1548,8 @@ To list all viewable attributes by dumping that information to a file 'a'.
                 <summary>What is SoC</summary>
                 <pre>
 - SoC is an integrated circuit which integrates most or all components of a computer system onto a single die chip. 
-- SoC contains digital or analog components, memory interfaces, processors, input/output interfaces and other such components.
+- SoC contains digital or analog components, memory interfaces, processors, input/output interfaces and other such 
+components.
 - SoC integrates all such components and ensures seamless working of these components together to work as a system.
                 </pre>
             </details>
@@ -1545,8 +1560,11 @@ To list all viewable attributes by dumping that information to a file 'a'.
                 <pre>
 <img width="709" alt="Screenshot 2024-06-15 at 11 20 25 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/67d043a4-bcc8-4c40-9bf4-75d2e1598eb4">
 - Snapdragon SoCs (by Qualcomm) contains a core processor that runs on ARM Architecture
-- Uses Adreno GPU (Graphic Processing Unit) to handle graphic rendering and multimedia processing. Adreno GPUs are also designed by Qualcomm and their main application is for mobile and embedded applications.
-- Snapdragon SoCs include Hexagon DSPs (Digital Signal Processors) to handle tasks such as audio/video encoding, image processing, sensor data processing, other such data processing tasks. Hexagon DSP is the DSP architecture of Qualcomm.
+- Uses Adreno GPU (Graphic Processing Unit) to handle graphic rendering and multimedia processing. Adreno GPUs are 
+also designed by Qualcomm and their main application is for mobile and embedded applications.
+- Snapdragon SoCs include Hexagon DSPs (Digital Signal Processors) to handle tasks such as audio/video encoding, 
+image processing, sensor data processing, other such data processing tasks. Hexagon DSP is the DSP architecture of 
+Qualcomm.
 - A modem for cellular connectivity such as 4G LTE/5G networks, Wi-Fi, etc.
 - Multimedia component is used for video encoding/decoding, multimedia playback and other multimedia tasks.
 - Sensor Cores that control the sensors and their data.
@@ -1558,12 +1576,147 @@ To list all viewable attributes by dumping that information to a file 'a'.
         </li>
         <li>
             <details>
-                <summary>Types of SoC</summary>
+                <summary>Categories of SoC</summary>
                 <pre>
-
+There are 3 different categories:
+- SoC built around microcontrollers.
+- SoC built around microprocessors.
+- Application Specific Integrated Circuits (ASICs)
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>SoC Design Flow</summary>
+                <pre>
+<img width="265" alt="Screenshot 2024-06-15 at 11 44 56 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/49986197-e15a-4292-b6fb-a60a7f6e6fb3">
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Intro to BabySoC</summary>
+                <pre>
+<img width="857" alt="Screenshot 2024-06-15 at 11 47 53 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/bca43a1d-f447-4108-8baa-4b87001dd96e">
+BabySoC Components:
+- RVMYTH: Simple RISCV-based CPU.
+- PLL: Phased-Lock Loop is a control system that generates output signals used for sunchronizing purpose such as 
+clock distribution.
+- DAC: Digital to Analog Converter, as the name suggests, converts a digital signal to an analog signal. They enable 
+the generation of digitally difined transmission signals used for communication.
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Intro to Modelling</summary>
+                <pre>
+- Input Signals are first fed into the BabySoC module that make the pll start generating the clock signal for the circuit
+- This generated clock signal will make rvyth execute instructions to load register r17 with some values through various 
+cycles
+- DAC uses these values to provide the final output signal (OUT).                    
                 </pre>
             </details>
         </li>
     </ul>
 </details>
-<!--End of Day 0-->
+<!--End of Day 11-->
+<details>
+    <summary>Day 12: BabySoC Modelling</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Modelling IP Cores</summary>
+                <p>RVMYTH (RISCV based processor)</p>
+                <pre>
+- RISC stands for Reduced Instruction Set Computer as opposed to CISC (Complex Instruction Set Computer).
+- It is an Instruction Set Architecture (ISA). 
+- A simple one cycle CPU for RISC-V:
+<img width="1012" alt="Screenshot 2024-06-15 at 12 40 03 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ccd168ef-3a1e-484a-a97d-3a4ad531efe2">
+-Pipelined Flow for RISC-V Processor Instructions:
+<img width="865" alt="Screenshot 2024-06-15 at 12 42 08 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/76e0bd00-0856-4539-b6be-c7fe261e70dc">
+                </pre>
+                <p>Phased Locked Loop (PLL)</p>
+                <pre>
+- PLL is an electronic circuit with a voltage or voltage driven oscillator that matches the frequency of input signal. 
+- Used to generate, stabilize, modulate and demodulate.
+- Clock Signal is generated using Quartz crystal oscillators.
+-These Quartz Crystal Oscillator would require to supply signal for a lot of blocks which can prove to cause delays due to long wires or different blocks would require different signal frequencies. In such oscillators, there occurs a ppm error which causes delay over time.
+- To avoid such issues, we use a PLL that recieves the clock signal and adjusts it to the frequency it is expected to propogate.
+- Components of a PLL:
+    . Phase Detector: The change is crystal oscillator's phase is detected at the phase detector when the phase doesn't match that of the reference frequency. 
+    . Loop Filter: Loop Filter generated a voltage signal that indicates the phase difference.
+    . Voltage Controlled Oscillator: Based on the voltage recieved, it generates the clock signal that will be in the same phase as the reference frequency.
+    . Frequency Divider: Used to reduce the frequency if required.
+<img width="707" alt="Screenshot 2024-06-15 at 1 02 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5807a110-f9f2-42e3-90af-5f3ee3cdf102">
+                </pre>
+                <p>Digital-to-Analog Converter</p>
+                <pre>
+- Converts a Digital signal to an Analog signal.
+- Represented using binary codes.
+- Types of DACs:
+    . Weighted Resistor DAC:
+        Produces an analog output by using binary weighted resistors in an inverting adder circuit.
+<img width="493" alt="Screenshot 2024-06-15 at 1 09 10 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/30928319-9480-4758-8bb4-6d645fac5a6a">
+    . R-2R Ladder: 
+        Produces an analog output by using a R-2R ladder network in an inverting adder circuit.
+<img width="673" alt="Screenshot 2024-06-15 at 1 12 08 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8994fb05-fcb3-467a-8b60-d5c31d0fb3e8">
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Lab for Modelling BabySoC</summary>
+                <p>Pre-Modelling Info:</p>
+                <pre>
+- HDL can be used for modelling and checking functionality using testbench for RVMYTH
+- As DAC & PLL are analog systems, verilog can't be used to synthesize them. However, their functionality can be simulated in verilog using data-types such as real. This is done to verify its logical correctness.
+- Verilog will be used to model, iverilog will be used to compile and simulate, and GTKWave will be used to see the waveforms of the design.
+                </pre>
+                <p>Tips on Modelling the Design</p>
+                <pre>
+- Avoid race conditions.
+- Use optimized testbench for debugging.
+- Create models that simulate faster.
+- Use case sensitive behavior.
+                </pre>
+                <p>Installing Required Packages</p>
+                <pre>
+pip3 install pyyaml click sandpiper-saas
+                </pre>
+                <p>Cloning the VSDBabySoC Repository</p>
+                <pre>
+git clone https://github.com/manili/VSDBabySoC.git
+                </pre>
+                <p>Step 1: Translate .tlv to .v</p>
+                <pre>
+cd VSDBabySoC
+sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
+                </pre>
+                <p>Step 2: Load & Execute the Pre Synthesis Design</p>
+                <pre>
+Load:
+iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+Execute:
+./output/pre_synth_sim.out
+<img width="1215" alt="Screenshot 2024-06-15 at 3 06 09 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/39431ce9-9f19-425a-bc43-5a597ff78061">
+A .vcd file gets created
+                </pre>
+                <p>Step 3: Load the .vcd file to GTKWave to analyze behaviour</p>
+                <pre>
+gtkwave output/pre_synth_sim.vcd
+<img width="577" alt="Screenshot 2024-06-15 at 3 08 50 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b3058b10-6af4-46d2-89f9-27b08568dd51">
+<img width="1440" alt="Screenshot 2024-06-15 at 3 09 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d5c23930-b44c-4f0d-a994-23186ecd6a64">
+Where,
+CLK is the output signal from PLL and the input signal to RVMYTH
+reset is the input signal to RVMYTH
+OUT is the output signal of DAC and is the final output of VSDBabySoC
+RV_TO_DAC[9:0] is the 10-bit output from RVMYTH
+OUT is the output wire from DAC containing real analog values. To view this data, right-click on this signal and change the Analog type to 'Step' in Data Format.
+<img width="1440" alt="Screenshot 2024-06-15 at 3 18 21 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8def554c-4276-41c6-bf81-4fdc3844f2a8">
+                </pre>
+            </details>
+        </li>
+    </ul>
+</details>
+<!--End of Day 12-->
