@@ -314,10 +314,10 @@ Generate the netlist
 Run show command
 <img width="1362" alt="Screenshot 2024-05-22 at 7 33 46 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f04ad95e-7c92-4b21-8f02-a4e3a7b2151d">
 <img width="1360" alt="Screenshot 2024-05-22 at 7 34 39 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7f953408-0771-48c1-b307-33c96a04fed1">
-Multiple Instances: Such module level synthesis is done when multiple instances of the same module are 
-used in the top level design.
-Divide & Conquer: If you have a massive design, this type of synthesis can be done to generate 
-multiple understandable netlists that can be stitched together.
+Multiple Instances: Such module level synthesis is done when multiple instances of the 
+same module are used in the top level design.
+Divide & Conquer: If you have a massive design, this type of synthesis can be done to 
+generate multiple understandable netlists that can be stitched together.
                             </pre>
                         </details>
                     </li>
@@ -1526,3 +1526,44 @@ To list all viewable attributes by dumping that information to a file 'a'.
     </ul>
 </details>
 <!--End of Day 7-->
+<details>
+<summary>Day 11: Introduction to BabySoC</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>What is SoC</summary>
+                <pre>
+- SoC is an integrated circuit which integrates most or all components of a computer system onto a single die chip. 
+- SoC contains digital or analog components, memory interfaces, processors, input/output interfaces and other such components.
+- SoC integrates all such components and ensures seamless working of these components together to work as a system.
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Structure of SnapDragon SoC</summary>
+                <pre>
+<img width="709" alt="Screenshot 2024-06-15 at 11 20 25 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/67d043a4-bcc8-4c40-9bf4-75d2e1598eb4">
+- Snapdragon SoCs (by Qualcomm) contains a core processor that runs on ARM Architecture
+- Uses Adreno GPU (Graphic Processing Unit) to handle graphic rendering and multimedia processing. Adreno GPUs are also designed by Qualcomm and their main application is for mobile and embedded applications.
+- Snapdragon SoCs include Hexagon DSPs (Digital Signal Processors) to handle tasks such as audio/video encoding, image processing, sensor data processing, other such data processing tasks. Hexagon DSP is the DSP architecture of Qualcomm.
+- A modem for cellular connectivity such as 4G LTE/5G networks, Wi-Fi, etc.
+- Multimedia component is used for video encoding/decoding, multimedia playback and other multimedia tasks.
+- Sensor Cores that control the sensors and their data.
+- Camera Hardware Accelerators for video recording and other camera-related tasks.
+- Display Hardware Accelerators for video-playback and other display tasks.
+- Location Sensors that provide accurate location information and perform navigation related tasks. 
+                </pre>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Types of SoC</summary>
+                <pre>
+
+                </pre>
+            </details>
+        </li>
+    </ul>
+</details>
+<!--End of Day 0-->
