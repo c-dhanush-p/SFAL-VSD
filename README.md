@@ -1720,3 +1720,243 @@ OUT is the output wire from DAC containing real analog values. To view this data
     </ul>
 </details>
 <!--End of Day 12-->
+<details>
+    <summary>Day 13: Post-Synthesis Simulation</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Theory</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>What was done in Pre-Synthesis?</summary>
+                            <p>Modelled and simulated VSDBabySoc using iverilog & GTKWave to check its functionality.</p>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Synthesizable & Non-Synthasizable Constructs in Verilog</summary>
+                            <p>
+                            </p>
+                            <pre>
+|Verilog Constructs|Synthesizable|Non-Synthesizable|
+|------------------|-------------|-----------------|
+|      module      |     Yes     |        No       |
+|  instantiation   |     Yes     |        No       |
+|      initial     |      No     |       Yes       |
+|      always      |     Yes     |        No       |
+|      assign      |     Yes     |        No       |
+|    primitives    |     Yes     |        No       |
+| force and release|      No     |       Yes       |
+|      delays      |      No     |       Yes       |                                
+|   fork and join  |      No     |       Yes       |
+|      ports       |     Yes     |        No       |
+|    parameter     |     Yes     |        No       |
+|       time       |      No     |       Yes       |
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Why is Pre-Synthesis Necessary</summary>
+                            <p>
+Pre-Synthesis is required to test the functionality of design before it is synthesized to ensure the expected behavior from the design without considering the actual implementation details. <br>
+Post-Synthesis is done after synthesizing the design into a netlist and considers gate delays and reports functionality and timing violation.
+                            </p>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Gate Level Simulation (GLS)</summary>
+                            <p>
+'Gate Level' refers to the netlist view of the design that is obtained after synthesis. GLS is performed to verify the functionality and timing of a design against its original specifications after synthesizing it into a netlist. RTL Simulation is Pre-Synthesis whereas GLS Simulation is Post-Synthesis. <br>
+'Netlist View' is a connection list of all the design's logical gates and IP models describing their functionality and timing behavior. <br>
+RTL Simulation doesn't consider any time delays. GLS also can be zero delay, but the timing details are considered when performing simulations.
+                            </p>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>What do you synthesize the netlist with?</summary>
+                            <p>
+- Using the Synopsys Design Compiler (DC) <br>
+- Targets for Lab: <br>
+    . Invoke DC & Read verilog file <br>
+    . Read the library (.db) and set target library <br>                            
+    . Synthesize the code <br>                            
+    . Perform Post-Synthesis Simulation <br>                            
+    . Pre-Simulation Output & Post-Simulation Output should match <br>                            
+                            </p>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Lab</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>Converting .lib to .db</summary>
+                            <p>Step 1: Go to the directory with library files</p>
+                            <pre>
+cd VSDBabySoC/src/lib
+<img width="539" alt="Screenshot 2024-06-18 at 12 32 48 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/bce80d76-fb4f-4b79-b8e0-a43d59c0aa99">
+                            </pre>
+                            <p>Step 2: Invoke Library Compiler</p>
+                            <pre>
+csh
+lc_shell
+<img width="283" alt="Screenshot 2024-06-18 at 12 35 51 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6ece31cd-b0b0-473f-b51d-ba4f35ef290a">
+<img width="729" alt="Screenshot 2024-06-18 at 12 36 28 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/71ca28f9-7543-45f3-9327-260d531e5f56">
+                            </pre>
+                            <p>Step 3: Read the PLL library & Write to .db format</p>
+                            <pre>
+read_lib avsdpll.lib
+write_lib avsdpll -format db -output avsdpll.db
+<img width="1063" alt="Screenshot 2024-06-18 at 1 03 00 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e8164486-0956-45a7-90d7-c25dd8a1cbd9">
+                            </pre>
+                            <p>Step 4: Read the DAC library & Write to .db format</p>
+                            <pre>
+read_lib avsddac.lib
+write_lib avsdpll -format db -output avsddac.db
+<img width="1092" alt="Screenshot 2024-06-18 at 1 05 32 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3645b504-7bd6-450a-9a5f-49589d383787">
+                            </pre>
+                            <p>Step 5: Read the sky library & Write to .db format</p>
+                            <pre>
+read_lib sky130_fd_sc_hd__tt_025C_1v80.lib
+write_lib sky130_fd_sc_hd__tt_025C_1v80 -format db -output sky130_fd_sc_hd__tt_025C_1v80.db
+<img width="1430" alt="Screenshot 2024-06-20 at 1 54 31 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e9e85bab-c065-486a-89a3-9594f8942204">
+                            </pre>
+                            <p>ERROR & Warning Codes Faced & What They Mean</p>
+                            <pre>
+LBDB-76:
+<img width="791" alt="Screenshot 2024-06-20 at 12 46 33 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/13ad9356-0fe0-4a84-bafc-8452a8ae147b">
+LBDB-172:
+<img width="848" alt="Screenshot 2024-06-20 at 12 50 01 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c325c551-c23c-4f50-854b-d8256872fade">
+LIBG-16:
+<img width="817" alt="Screenshot 2024-06-20 at 12 52 07 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/563cb275-5652-45b9-a6c8-1f8c0ef7ac07">
+LIBG-10:
+<img width="537" alt="Screenshot 2024-06-20 at 12 54 17 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/747853a8-18e7-42c3-84a1-f7ef492717da">
+LIBG-243:
+<img width="595" alt="Screenshot 2024-06-20 at 12 55 55 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/64b30587-8db5-4423-842f-3d578e1ab2ae">
+LIBG-275:
+<img width="1355" alt="Screenshot 2024-06-20 at 12 57 05 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9fa6a68e-7bc3-4119-aec6-558f7e69c532">
+LIBG-205:
+<img width="719" alt="Screenshot 2024-06-20 at 12 58 39 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6d1e2bc4-dee5-4e04-ab9c-24cbbf4fdc45">
+<img width="724" alt="Screenshot 2024-06-20 at 12 59 08 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0b3a021a-ecdb-4d70-9311-b529b68aae6a">
+<img width="523" alt="Screenshot 2024-06-20 at 1 02 00 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9dc08edd-75eb-4810-8866-e3ccb9aa66f4">
+<img width="539" alt="Screenshot 2024-06-20 at 1 02 33 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d2a9b817-c104-451e-bb62-17aa20618db8">
+<img width="562" alt="Screenshot 2024-06-20 at 1 02 48 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/08a6c67f-088b-4c6f-96f0-c4cd6f21fafe">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Synthesis</summary>
+                            <p>Step 1: Invoke Design Compiler</p>
+                            <pre>
+$ csh
+$ dc_shell
+<img width="252" alt="Screenshot 2024-06-20 at 6 25 44 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/586ac0f0-555a-401c-8397-6578f54cbaec">
+<img width="1041" alt="Screenshot 2024-06-20 at 6 26 55 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5ab5e564-452b-4665-860f-b5fbac991dc0">
+                            </pre>
+                            <p>Step 2: Set Target Library</p>
+                            <pre>
+dc_shell> set target_library /home/dhanush/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+<img width="851" alt="Screenshot 2024-06-20 at 6 31 49 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4f5fa1c3-9d73-47d2-a7d4-cad596e3ce62">
+                            </pre>
+                            <p>Step 3: Set Link Library</p>
+                            <pre>
+dc_shell> set link_library { * /home/dhanush/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/dhanush/VSDBabySoC/src/lib/avsddac.db /home/dhanush/VSDBabySoC/src/lib/avsdpll.db }
+<img width="1426" alt="Screenshot 2024-06-20 at 6 38 22 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d94cfe85-a196-4ffd-8e38-29123deb8026">
+                            </pre>
+                            <p>Step 4: Set Search Path</p>
+                            <pre>
+Search Path refers to the directories where DC looks for various files
+/home/dhanush/VSDBabySoC/src/module includes the verilog files of modules and their respective testbenches
+/home/dhanush/VSDBabySoC/src/include includes the verilog header files
+
+dc_shell> set search_path {/home/dhanush/VSDBabySoC/src/module /home/dhanush/VSDBabySoC/src/include}
+<img width="903" alt="Screenshot 2024-06-20 at 6 45 18 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2de5c899-64b3-4e50-8f21-5c1af5120cc3">
+                            </pre>
+                            <p>Step 5: Read All Files Required for Synthesis</p>
+                            <pre>
+Read the files into DC while specifying the top module for design
+
+dc_shell> read_file { clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v sandpiper.vh sandpiper_gen.vh sp_default.vh sp_verilog.vh } -autoread -top vsdbabysoc
+<img width="1386" alt="Screenshot 2024-06-20 at 7 06 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7848b1c6-01a8-4797-b154-7b89da4ba1a0">
+                            </pre>
+                            <p>Step 6: Link</p>
+                            <pre>
+Link the design with the library
+
+dc_shell> link
+<img width="974" alt="Screenshot 2024-06-20 at 7 27 17 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b7270ad1-e0eb-432c-895c-ce9b52a35cd0">
+                            </pre>
+                            <p>Step 7: Compile Design compile_ultra</p>
+                            <pre>
+Compile the design using a high level optimization
+
+dc_shell> compile_ultra
+<img width="788" alt="Screenshot 2024-06-20 at 7 31 56 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/557e2daa-4e16-4075-8d5e-237945c963bf">
+                            </pre>
+                            <p>Step 8: Write Netlist</p>
+                            <pre>
+Write a netlist file out in the verilog format with the design using a heirarchial structure
+
+dc_shell> write_file -format verilog -hierarchy -output /home/dhanush/VSDBabySoC/output/vsdbabysoc_net.v
+<img width="943" alt="Screenshot 2024-06-20 at 7 43 30 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e33c4f85-d7d6-49e6-9ed8-ac675f228c72">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Post-Synthesis</summary>
+                            <p>Step 1: Go to VSDBabySoC Directory</p>
+                            <pre>
+$ cd /home/dhanush/VSDBabySoC/
+<img width="464" alt="Screenshot 2024-06-20 at 7 48 07 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e877b972-9450-4af3-bec3-973263057791">
+                            </pre>
+                            <p>Step 2: Compile the Design using iverilog</p>
+                            <pre>
+Compile the design using iverilog and output the simulation file
+
+$ iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 -o ./output/post_synth_sim.out ./src/gls_model/primitives.v ./src/gls_model/sky130_fd_sc_hd.v ./output/vsdbabysoc_net.v ./src/module/avsdpll.v ./src/module/avsddac.v ./src/module/testbench.v
+<img width="1428" alt="Screenshot 2024-06-20 at 7 55 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b55ff6a7-660f-46c0-b81b-c6c1004e35cb">
+                            </pre>
+                            <p>Step 3: Fix the Errors</p>
+                            <pre>
+The errors given suggest that maybe the ports mentioned don't exist in the module or don't correctly connect to the top module's ports.
+Check both PLL & DAC .v & .lib files and add the missing ports & remove the unnecesary pins.
+                            </pre>
+                            <p>Step 5: Try to Compile the Design again</p>
+                            <pre>
+$ iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 -o ./output/post_synth_sim.out ./src/gls_model/primitives.v ./src/gls_model/sky130_fd_sc_hd.v ./output/vsdbabysoc_net.v ./src/module/avsdpll.v ./src/module/avsddac.v ./src/module/testbench.v
+
+<img width="1429" alt="Screenshot 2024-06-20 at 9 40 10 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ea44240f-98ce-4cd2-baca-cefbaa775295">
+                            </pre>
+                            <p>Step 6: Simulate the Design</p>
+                            <pre>
+$ ./output/post_synth_sim.out
+<img width="537" alt="Screenshot 2024-06-20 at 9 43 05 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ba84db50-7b7b-4c82-9df2-b91526f3d596">
+                            </pre>
+                            <p>Step 7: Use GTKWave to Analyze the Design</p>
+                            <pre>
+$ gtkwave dump.vcd 
+<img width="1090" alt="Screenshot 2024-06-20 at 9 47 16 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/28315cbc-5d19-4d64-9883-37c78b15d686">
+                            </pre>
+                            <p>Step 8: Observe the Waveform</p>
+                            <pre>
+Notice how the pre-synth waveform and post-synth waveform match indicating succesful Synthesis.
+<img width="1440" alt="Screenshot 2024-06-20 at 9 48 35 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/be0dc959-2a58-49ed-afc2-4d17bc066866">
+                            </pre>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+<!--End of Day 3-->
