@@ -1959,4 +1959,131 @@ Notice how the pre-synth waveform and post-synth waveform match indicating succe
         </li>
     </ul>
 </details>
-<!--End of Day 3-->
+<!--End of Day 13-->
+<details>
+    <summary>Day 14: Synopsys Design Compiler & Timing Analysis</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Theory</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>What is PVT?</summary>
+                            <p>
+PVT stands for Process, Voltage & Temperature and these indicate the key factors that affect the performance of an integrated circuit.
+                            </p>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>What are Corners of PVT?</summary>
+                            <p>
+Integrated Circuits are required to work at various ranges of voltages. The corners of PVT (Process, Voltage, Temperature) in VLSI refer to the specific combinations of these three parameters that are used to model and test the performance of integrated circuits. Each corner represents a unique set of operating conditions that can affect the behavior and the overall performance of the chip. <br>
+<img width="416" alt="Screenshot 2024-06-21 at 11 17 22 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cce67229-9899-4ded-a6c6-392ce16d2e15"><br>
+Figure: The various PVT Operating Conditions (https://asic-soc.blogspot.com/2013/07/operating-condition-operating.html)
+                            </p>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Lab</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>Converting .libs to .db</summary>
+                            <p>Step 1: Invoke Library Compiler</p>
+                            <pre>
+$ csh
+$ lc_shell
+<img width="287" alt="Screenshot 2024-06-23 at 8 11 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b80f0c44-42d4-4cbf-ab83-bc3b45fe0512">
+<img width="729" alt="Screenshot 2024-06-23 at 8 12 07 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4f2c57df-ce9e-442a-9241-1409ba190ad3">
+                            </pre>
+                            <p>Step 2: Read each library & Write to .db format</p>
+                            <pre>
+lc_shell> read_lib /home/dhanush/VSDBabySoC/src/timing_lib/sky130_fd_sc_hd*.lib
+lc_shell> write_lib sky130_fd_sc_hd* -format db -output /home/dhanush/VSDBabySoC/src/timing_db/sky130_fd_sc_hd*.db
+<img width="840" alt="Screenshot 2024-06-23 at 8 39 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/33b9cec1-d0e1-445f-8e4c-4668c8b088b4">
+<img width="682" alt="Screenshot 2024-06-23 at 8 40 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6ba1bb61-d08e-4f08-b732-f7318957376e">
+<img width="1270" alt="Screenshot 2024-06-23 at 8 42 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/89f13757-7c29-4bf0-a55b-163a6c423e3d">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Synthesis & Timing Data Analysis</summary>
+                            <p>Step 1: Invoke Design Compiler</p>
+                            <pre>
+$ csh
+$ dc_shell
+<img width="252" alt="Screenshot 2024-06-20 at 6 25 44 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/586ac0f0-555a-401c-8397-6578f54cbaec">
+<img width="1041" alt="Screenshot 2024-06-20 at 6 26 55 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5ab5e564-452b-4665-860f-b5fbac991dc0">
+                            </pre>
+                            <p>Step 2: Set Target Library</p>
+                            <pre>
+dc_shell> set target_library /home/dhanush/VSDBabySoC/src/timing_db/sky130_fd_sc_hd__*.db
+<img width="943" alt="Screenshot 2024-06-23 at 9 25 48 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/a952275d-6d59-44cc-9df6-a1bbc298b2c4">
+                            </pre>
+                            <p>Step 3: Set Link Library</p>
+                            <pre>
+dc_shell> set link_library { * /home/dhanush/VSDBabySoC/src/timing_db/sky130_fd_sc_hd__*.db /home/dhanush/VSDBabySoC/src/lib/avsddac.db /home/dhanush/VSDBabySoC/src/lib/avsdpll.db }
+<img width="1426" alt="Screenshot 2024-06-23 at 9 31 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/923f2817-c625-4ed8-8ed5-5a27e85f5fd7">
+                            </pre>
+                            <p>Step 4: Set Search Path</p>
+                            <pre>
+Search Path refers to the directories where DC looks for various files
+/home/dhanush/VSDBabySoC/src/module includes the verilog files of modules and their respective testbenches
+/home/dhanush/VSDBabySoC/src/include includes the verilog header files
+
+dc_shell> set search_path {/home/dhanush/VSDBabySoC/src/module /home/dhanush/VSDBabySoC/src/include}
+<img width="907" alt="Screenshot 2024-06-23 at 9 32 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/186eabc7-6e36-4d91-910e-2339b595c230">
+                            </pre>
+                            <p>Step 5: Read All Files Required for Synthesis</p>
+                            <pre>
+Read the files into DC while specifying the top module for design
+
+dc_shell> read_file { clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v sandpiper.vh sandpiper_gen.vh sp_default.vh sp_verilog.vh } -autoread -top vsdbabysoc
+<img width="1387" alt="Screenshot 2024-06-23 at 9 56 15 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ccc38a21-7728-4c1e-b482-974eb8a721b9">
+                            </pre>
+                            <p>Step 6: Link</p>
+                            <pre>
+Link the design with the library
+
+dc_shell> link
+<img width="1025" alt="Screenshot 2024-06-23 at 9 56 52 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/77538582-98a3-4adf-a45f-5196e2a98f3e">
+                            </pre>
+                            <p>Step 7: Compile Design using compile_ultra</p>
+                            <pre>
+Compile the design using a high level optimization
+
+dc_shell> compile_ultra
+<img width="217" alt="Screenshot 2024-06-23 at 9 59 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/39444b3f-b9a5-43ec-b1f4-1e7b9f6ac403">
+<img width="791" alt="Screenshot 2024-06-23 at 10 01 49 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/164a215a-2413-4c74-8fed-721056747964">
+                            </pre>
+                            <p>Step 8: Extract Timing Data</p>
+                            <pre>
+Use get_attribute to extract timing data for max path (for WNS) and min path (for WHS)
+
+get_attribute [get_timing_paths -delay_type max -max_paths 1] slack
+get_attribute [get_timing_paths -delay_type min -max_paths 1] slack
+
+<img width="701" alt="Screenshot 2024-06-24 at 12 45 49 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d31048d1-7dc0-4fdb-8bb2-23b95edfea32">
+                            </pre>
+                            <p>Step 9: Repeat Steps 1-8 for each cornert</p>
+                            <p>Step 10: Table of WNS & WHS (with Graph)</p>
+                            <pre>
+<img width="290" alt="Screenshot 2024-06-24 at 12 51 57 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8c2df425-9fa5-42a8-a3ee-51a6a6aea304">
+<img width="559" alt="Screenshot 2024-06-24 at 12 53 37 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c864ea8b-affa-4993-a5b6-08eb038c2e3a">
+                            </pre>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+<!--End of Day 13-->
+
