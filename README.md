@@ -2072,7 +2072,7 @@ get_attribute [get_timing_paths -delay_type min -max_paths 1] slack
 
 <img width="701" alt="Screenshot 2024-06-24 at 12 45 49 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d31048d1-7dc0-4fdb-8bb2-23b95edfea32">
                             </pre>
-                            <p>Step 9: Repeat Steps 1-8 for each cornert</p>
+                            <p>Step 9: Repeat Steps 1-8 for each corner</p>
                             <p>Step 10: Table of WNS & WHS (with Graph)</p>
                             <pre>
 <img width="290" alt="Screenshot 2024-06-24 at 12 51 57 AM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8c2df425-9fa5-42a8-a3ee-51a6a6aea304">
@@ -2085,5 +2085,125 @@ get_attribute [get_timing_paths -delay_type min -max_paths 1] slack
         </li>
     </ul>
 </details>
-<!--End of Day 13-->
+<!--End of Day 14-->
+
+
+-- START --
+
+<details>
+    <summary>Day 15: Inception of Open-Source EDA, OpenLANE and Sky130 PDK</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Introduction toper Package, Chip, Pads, Core, Die and Foundry IPs</summary>
+                <p>Packaging</p>
+                <pre>
+The IC package provides the physical, electrical and thermal interface between the chip and the physical world. It protects the chip, enables electrical connections to the board using pins. 
+                </pre>
+                <p>Chip</p>
+                <pre>
+The chip or die is the piece of silicon that contains the integrated circuit. It is surrounded by pads for I/O connections.
+                </pre>
+                <p>Pads</p>
+                <pre>
+Pads are large metal areas on the chip that connect to the package pins.
+                </pre>
+                <p>Core</p>
+                <pre>
+The core is the central area of the chip where the active logic cells, register memories, and other functional blocks are placed during physical design.
+                </pre>
+                <p>Die</p>
+                <pre>
+A die is the individual piece of silicon that is cut from the wafer and packaged.
+                </pre>
+                <p>Foundry IPs</p>
+                <pre>
+Intellectual Property (IP) blocks are pre-designed, pre-verified circuit blocks that can be reused in VLSI design. IPs come in digital, analog and mixed-signal varieties. They help reduce design time and improve quality by providing optimized, pre-validated functionality. 
+                </pre>
+            </details>
+        </li>
+    </ul>
+        <li>
+            <details>
+                <summary>SoC Design & OpenLane</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>Introduction to Compnents of Open-Source Digital ASIC Design</summary>
+                            <p>Designing ASIC circuits requires RTL IPs, EDA Tools & PDK</p>
+                            <p>What is PDK?</p>
+                            <pre>
+Process Design Kit (PDK) is a set of files that contain information and tools for designers to create IC designs that are compatible with the foundry's capabilities. Some key elements of PDK include:
+    - Primitive Device Libraries
+    - Design Rules 
+    - Technology Data
+    - IP Blocks
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary>Simplified RTL2GDS Flow</summary>
+                            <p>RTL to GDS Flow</p>
+                            <pre>
+<img width="620" alt="Screenshot 2024-06-25 at 9 22 43 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d7b0a712-54cc-4290-bac0-956244ab302c">
+- Synthesis
+- Floorplanning
+- Powerplanning
+- Placement
+- Clock Tree Synthesis
+- Routing 
+- Sign Off
+                            </pre>
+                            <p>Synthesis</p>
+                            <pre>
+Converts RTL to a circuit out of components from Standard Cell Library (SCL)
+                            </pre>
+                            <p>Floorplanning</p>
+                            <pre>
+Plan the silicon area.
+- Chip Floorplanning: Partition the chip die area between different components and place I/O pads
+- Macro Floorplanning: Define a macro's dimensions, pin location, row definitions.
+                            </pre>
+                            <p>Powerplanning</p>
+                            <pre>
+The power network is constructed. A chip is powered by multiple VDD & Ground pins. The power pins are connected to all components using rings and power straps (rows and columns). They are placed in grid-like structure to reduce resistance. They use upper-thicker metal layers.
+                            </pre>
+                            <p>Placement</p>
+                            <pre>
+- Place the gate level netlist cells on floorplan rows, aligned with sites. 
+- Done in two steps:
+    1. Global Placement: Finds optimal positions for the cells
+    2. Detailed Placement: The placement of cells is altered to be legal.
+                            </pre>
+                            <p>CTS</p>
+                            <pre>
+Clock Tree Synthesis creates a clock-distribution network. This is done by:
+- Delivering the clock to all sequential elements
+- With minimum skew
+- In a good shape (more-symmetrical like H & X)
+                            </pre>
+                            <p>Routing</p>
+                            <pre>
+Implement the interconnect between cells using available metal layers. For each layer the PDK defines min width of tracks, pitch, via lengths, etc. 
+- Routes are metal tracks that form a metal grid. 
+- Routing Grid is huge.
+- Global Routing: Generated routing guides.
+- Detailed Routing: Uses routing guides to implement actual wiring.
+                            </pre>
+                            <p>Sign-Off</p>
+                            <pre>
+- Physical Verificaton
+    :Design Rule Checking (DRC)
+    :Layout vs Schematic (LVS)
+- Timing Verification
+    :Static Timing Analysis (STA)
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+<!--End of Day 14-->
+
 
